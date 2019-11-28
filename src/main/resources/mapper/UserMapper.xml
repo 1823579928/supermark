@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dageda.vueshiromodel.dao.UserMapper">
+    <select id="judgeLog" resultType="User">
+        select   `id`,
+                  `nickname`,
+                  `email`,
+                  `password`,
+                  `createtime`,
+                  `lastlogintime`,
+                  `status`
+        from user
+        where nickname=#{nickname}
+    </select>
+
+    <select id="getMenusByHrId" resultType="Permission">
+        SELECT p.id,p.url,p.describe FROM `role_permission` rp JOIN `permission` p
+        ON rp.pid=p.id
+        JOIN `user_role` ur
+        ON rp.rid=uid
+        WHERE uid=#{id}
+    </select>
+
+    <select id="findRolesByUserName" resultType="Role">
+        SELECT r.id,r.name,r.type FROM `user_role` ur JOIN `role` r
+        ON r.id=ur.rid
+        WHERE ur.uid=#{id}
+    </select>
+</mapper>

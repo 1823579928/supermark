@@ -1,0 +1,11 @@
+[core]
+	bare = true
+	repositoryformatversion = 0
+	filemode = false
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = git@github.com:1823579928/supermark.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	puttykeyfile = E:\\zjsy\\zjsy.ppk
+	pushurl = git@github.com:1823579928/supermark.git

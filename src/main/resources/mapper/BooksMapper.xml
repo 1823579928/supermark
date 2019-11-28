@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dageda.vueshiromodel.dao.BooksMapper">
+    <select id="getBooksList" resultType="Books">
+          select id,booksname,inventory,recorddate from books limit #{currentPage},#{pageSize}
+      </select>
+
+    <insert id="insertBooks" keyProperty="id" useGeneratedKeys="true" parameterType="Books">
+        INSERT INTO `books` (
+        `booksname`,
+        `inventory`,
+        `recorddate`
+        )
+        VALUES
+        (
+        #{booksName},
+        #{inventory},
+        #{recordDate}
+        ) ;
+        <selectKey keyProperty="id" resultType="java.lang.Integer" order="AFTER" keyColumn="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+
+    </insert>
+
+    <update id="updateBooks" parameterType="Books">
+          UPDATE
+              `books`
+            SET
+              `booksname` =  #{booksName},
+              `inventory` = #{inventory},
+              `recorddate` = #{recordDate}
+            WHERE `id` = #{id} ;
+      </update>
+
+    <delete id="deleteBooks">
+          delete from books where id=#{id}
+      </delete>
+
+    <select id="booksCount" resultType="Integer">
+        select count(1) from books
+    </select>
+</mapper>
