@@ -14,7 +14,7 @@ import java.util.Date;
  **/
 public class Books {
     private Integer id;
-    /** 图书名称  */
+    /** 图书名称 aa */
     private String booksName;
     /** 图书库存 */
     private Integer inventory;
